@@ -1,4 +1,4 @@
-# Sorting algorithm app
+# Bubble Sorting algorithm app
 
 Implementation of Bubble sort algorithm for sorting different types arrays.
 
