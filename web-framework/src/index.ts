@@ -1,15 +1,26 @@
-import { User } from "./models/User";
+import { User, UserProps } from "./models/User";
+import { Collection } from "./models/Collection";
 
-const user = new User({ name: "New", age: 12 });
-
-user.on("change", () => {
-  console.log("Change was triggered");
+const collection = new Collection<User, UserProps>(
+  "http://localhost:3000/users",
+  (json: UserProps) => User.build(json)
+);
+collection.on("change", () => {
+  console.log(collection);
 });
+collection.fetch();
 
-user.on("save", () => {
-  console.log("Save was triggered");
-});
+// const user = User.build({ id: 1 });
 
-// user.save();
-// user.set({ name: "Mincho" });
-console.log(user.get("name"));
+// user.on("change", () => {
+//   console.log(user);
+// });
+
+// user.on("save", () => {
+//   console.log("Save was triggered");
+// });
+
+// user.fetch();
+// // user.save();
+// // user.set({ name: "Mincho" });
+// console.log(user.get("name"));
