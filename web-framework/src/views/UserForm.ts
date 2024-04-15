@@ -1,7 +1,12 @@
 import { User } from "../models/User"
 
 export class UserForm {
-    constructor(public parent: Element, public model: User) {}
+    constructor(public parent: Element, public model: User) {
+        // rerender when change of model occurs
+        this.model.on("change", () => {
+            this.render()
+        })
+    }
 
     eventsMap(): { [key: string]: () => void } {
         return {
@@ -11,8 +16,12 @@ export class UserForm {
         }
     }
 
-    onSubmitClick(): void {
-        console.log("Button was clicked!")
+    onSubmitClick = (): void => {
+        const input = this.parent.querySelector('input')
+        if(input) {
+            const name = input.value
+            this.model.set({name})
+        }        
     }
 
     onHeaderHover(): void {
@@ -48,6 +57,8 @@ export class UserForm {
     }
 
     render(): void {
+        // empty the current content
+        this.parent.innerHTML = ''
         // create template
         const templateElement = document.createElement('template')
         // setup html 
