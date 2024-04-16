@@ -1,4 +1,5 @@
 import axios, { AxiosPromise, AxiosResponse } from "axios";
+import { HasId } from "./HasId";
 
 interface ModelAttributes<T> {
   // K extends keyof T -> generic constraint that limit different types that K can be (type of K can only be one of the keys of T)
@@ -16,10 +17,6 @@ interface Sync<T> {
 interface Events {
   on(eventName: string, callback: () => void): void;
   trigger(eventName: string): void;
-}
-
-interface HasId {
-  id?: number;
 }
 
 export class Model<T extends HasId> {
