@@ -1,5 +1,3 @@
-import { UserProps } from "./User";
-
 export class Attributes<T> {
   /* data is object to store information about a particular record */
   constructor(private data: T) {}
@@ -16,19 +14,20 @@ export class Attributes<T> {
     Object.assign(this.data, update);
   }
 
+  /* get all data about this record */
   getAll(): T {
     return this.data;
   }
 }
 
 /* example */
-// T is UserProps
-const attrs = new Attributes<UserProps>({
-  id: 5, // K is "id", T[K] is of type number
-  name: "Pesho", // K is "name", T[K] is of type string
-  age: 44, // K is "age", T[K] is of type number
-});
+// // T is UserProps
+// const attrs = new Attributes<UserProps>({
+//   id: 5, // K is "id", T[K] is of type number
+//   name: "Pesho", // K is "name", T[K] is of type string
+//   age: 44, // K is "age", T[K] is of type number
+// });
 
-const name = attrs.get("name");
-// const d = attrs.get('nokey'); // cannot call get with "nokey", because such key does not exist in UserProps
-const age = attrs.get("age");
+// const name = attrs.get("name");
+// // const d = attrs.get('nokey'); // cannot call get with "nokey", because such key does not exist in UserProps
+// const age = attrs.get("age");
