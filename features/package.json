@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "reflect-metadata": "^0.2.2"
+  },
   "devDependencies": {
     "@types/node": "^20.9.3"
   },
